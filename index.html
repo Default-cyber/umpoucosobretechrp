@@ -4,20 +4,544 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Default - Soluções Tecnológicas</title>
-    <!-- Inclua o Tailwind CSS para o estilo base -->
+    <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter font from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            /* New background image properties */
+            background-image: url('./public/fundo.jpeg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+        /* New overlay to improve text readability */
+        .content-overlay {
+            background-color: rgba(243, 244, 246, 0.85);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1f2937 0%, #4b5563 100%);
+        }
+        /* Style for the slides to enable fade transition */
+        .slide {
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            position: relative;
         }
     </style>
 </head>
-<body>
-    <div id="root"></div>
-    <!-- A referência do arquivo App.jsx está correta aqui -->
-    <script type="module" src="./App.jsx"></script>
+<body class="antialiased">
+
+    <!-- Header / Navigation Bar -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo or Company Name -->
+            <a href="#hero" class="text-2xl font-bold text-gray-900">Default</a>
+            <!-- Mobile Menu Button (hidden on desktop) -->
+            <div class="md:hidden">
+                <button id="menu-button" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Desktop Navigation Links -->
+            <div id="nav-links" class="hidden md:flex space-x-8">
+                <a href="#services" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">Serviços</a>
+                <a href="#projects" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">Projetos</a>
+                <a href="#certifications" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">Certificados</a>
+                <a href="#ia-ideas" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">IA de Ideias</a>
+                <a href="#about" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">Sobre Nós</a>
+                <a href="#contact" class="text-gray-600 hover:text-gray-900 transition-colors duration-300">Contato</a>
+            </div>
+        </nav>
+        <!-- Mobile Menu (initially hidden) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg py-4">
+            <a href="#services" class="block px-6 py-2 text-gray-800 hover:bg-gray-100">Serviços</a>
+            <a href="#projects" class="block px-6 py-2 text-gray-800 hover:bg-gray-100">Projetos</a>
+            <a href="#certifications" class="block px-6 py-2 text-gray-800 hover:bg-gray-100">Certificados</a>
+            <a href="#ia-ideas" class="block px-6 py-2 text-gray-800 hover:bg-gray-100">IA de Ideias</a>
+            <a href="#about" class="block px-6 py-2 text-gray-800 hover:bg-gray-100">Sobre Nós</a>
+            <a href="#contact" class="block px-6 py-2 text-gray-800 hover:bg-gray-100">Contato</a>
+        </div>
+    </header>
+
+    <main class="content-overlay">
+        <!-- Hero Section with Slideshow -->
+        <section id="hero" class="gradient-bg text-white py-20 md:py-32 relative overflow-hidden h-96">
+            <div class="container mx-auto px-6 h-full flex items-center justify-center relative">
+                <!-- Slide 1 -->
+                <div class="slide active">
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+                        Inovando o Futuro com Tecnologia
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 opacity-90">
+                        A Default cria soluções tecnológicas que transformam ideias em realidade.
+                    </p>
+                    <a href="#services" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300 transform hover:scale-105">
+                        Descubra Nossos Serviços
+                    </a>
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+                        Especialistas em Machine Learning
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 opacity-90">
+                        Construa sistemas inteligentes que aprendem e evoluem com o seu negócio.
+                    </p>
+                    <a href="#services" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300 transform hover:scale-105">
+                        Conheça o ML
+                    </a>
+                </div>
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+                        Soluções sob Medida
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 opacity-90">
+                        Seja para web, mobile ou consultoria, temos a solução ideal para você.
+                    </p>
+                    <a href="#contact" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300 transform hover:scale-105">
+                        Fale Conosco
+                    </a>
+                </div>
+            </div>
+            <!-- Slide navigation dots (optional) -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                <span class="dot w-3 h-3 bg-white bg-opacity-50 rounded-full cursor-pointer hover:bg-opacity-100 transition-all duration-300 active-dot"></span>
+                <span class="dot w-3 h-3 bg-white bg-opacity-50 rounded-full cursor-pointer hover:bg-opacity-100 transition-all duration-300"></span>
+                <span class="dot w-3 h-3 bg-white bg-opacity-50 rounded-full cursor-pointer hover:bg-opacity-100 transition-all duration-300"></span>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="bg-white py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 text-gray-900">Nossos Serviços</h2>
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+                    <!-- Service Card 1 -->
+                    <div class="p-8 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="text-indigo-600 mb-4">
+                            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9.75 14L22.5 14L22.5 17M9.75 17L12.75 22L12.75 17M12.75 17L12.75 22M14.25 17L14.25 14L1.5 14L1.5 17"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4V20M4 12H20"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-2">Desenvolvimento Web</h3>
+                        <p class="text-gray-600 text-center">
+                            Criamos sites e aplicações web modernos e escaláveis para impulsionar seu negócio.
+                        </p>
+                    </div>
+                    <!-- Service Card 2 -->
+                    <div class="p-8 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="text-indigo-600 mb-4">
+                            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-2">Aplicativos Mobile</h3>
+                        <p class="text-gray-600 text-center">
+                            Desenvolvemos aplicativos nativos e híbridos para iOS e Android, com foco na experiência do usuário.
+                        </p>
+                    </div>
+                    <!-- Service Card 3 -->
+                    <div class="p-8 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="text-indigo-600 mb-4">
+                            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v18l7-4 7 4V3a2 2 0 00-2-2H7a2 2 0 00-2 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-2">Consultoria Técnica</h3>
+                        <p class="text-gray-600 text-center">
+                            Orientamos sua empresa com as melhores estratégias e tecnologias para atingir seus objetivos.
+                        </p>
+                    </div>
+                    <!-- Service Card 4 (New) -->
+                    <div class="p-8 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="text-indigo-600 mb-4">
+                            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.608 3.292 0a1.724 1.724 0 002.573-1.066zM15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-2">Machine Learning</h3>
+                        <p class="text-gray-600 text-center">
+                            Implementamos soluções inteligentes para automação, análise de dados e previsão de resultados.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section (New) -->
+        <section id="projects" class="bg-gray-100 py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 text-gray-900">Nossos Projetos e Premiações</h2>
+                <div class="grid sm:grid-cols-1 lg:grid-cols-2 gap-10">
+                    <!-- Project Card 1: Solar Site -->
+                    <div class="p-8 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <img src="./public/energiasolar1.jpeg" alt="Projeto Solar Site" class="rounded-md mb-4 w-full">
+                        <h3 class="text-2xl font-semibold mb-2">🌞 Projeto Solar Site: Análise e Simulação Fotovoltaica</h3>
+                        <p class="text-gray-600 mb-4">
+                            Plataforma web interativa desenvolvida para facilitar a análise e simulação de sistemas de energia solar fotovoltaica. Utiliza Python (Flask), HTML5, CSS3, JavaScript e integrações com Google Maps.
+                        </p>
+                        <p class="text-gray-600 mb-4">
+                            Principais funcionalidades: mapeamento solar interativo, calculadora de área, simulador de painéis, análise financeira e ambiental.
+                        </p>
+                        <a href="https://solar-site-teal.vercel.app/login?next=%2F" target="_blank" class="text-indigo-600 font-medium hover:underline">Acessar o Projeto &rarr;</a>
+                    </div>
+                    <!-- Project Card 2: Software de NF -->
+                    <div class="p-8 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <img src="./public/projetoextracaodedados.jpeg" alt="Software de NF" class="rounded-md mb-4 w-full">
+                        <h3 class="text-2xl font-semibold mb-2">🚀 Sistema de Análise e Geração de Relatórios de NFe</h3>
+                        <p class="text-gray-600 mb-4">
+                            Aplicação em Python (CustomTkinter) para processamento automatizado de arquivos XML de NFe. Extrai dados fiscais e gera relatórios em Excel usando Pandas e BeautifulSoup.
+                        </p>
+                        <p class="text-gray-600 mb-4">
+                            Funcionalidades: autenticação com MongoDB Atlas, análise tributária, geração de planilhas detalhadas.
+                        </p>
+                        <a href="#contact" class="text-indigo-600 font-medium hover:underline">Saber Mais &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Awards Section -->
+                <div class="mt-16 text-center">
+                    <h3 class="text-3xl font-bold mb-6 text-gray-900">Premiações</h3>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-8">
+                        <!-- Award 1 -->
+                        <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <h4 class="text-xl font-semibold text-indigo-600">1° Lugar - Hackacripto</h4>
+                            <p class="text-gray-600">Nov de 2024</p>
+                            <p class="text-sm mt-2 text-gray-500">
+                                Destaque no desenvolvimento de uma nova criptomoeda durante o evento do hackathon.
+                            </p>
+                        </div>
+                        <!-- Award 2 -->
+                        <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <h4 class="text-xl font-semibold text-indigo-600">3° Lugar - II Maratona de Programação</h4>
+                            <p class="text-gray-600">Mai de 2025</p>
+                            <p class="text-sm mt-2 text-gray-500">
+                                Conquistado na II Maratona de Programação da Universidade de Ribeirão Preto (UNAERP).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="bg-white py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 text-gray-900">Cursos e Certificações</h2>
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
+                    <!-- Flutter Course -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-gray-900">Curso Flutter completo/Atualizado 2025</h4>
+                        <p class="text-sm text-gray-600 mb-2">Udemy | Mai de 2025</p>
+                        <p class="text-gray-700 text-sm">Competências: Desenvolvimento mobile Android/IOS/Windows.</p>
+                    </div>
+                    <!-- Intro to Cybersecurity -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-gray-900">Introduction to Cybersecurity</h4>
+                        <p class="text-sm text-gray-600 mb-2">Cisco Networking Academy | Jan de 2025</p>
+                    </div>
+                    <!-- Ethical Hacker with Kali Linux -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-gray-900">Hacker Ético Profissional com Kali Linux v2025</h4>
+                        <p class="text-sm text-gray-600 mb-2">Udemy | Dez de 2024</p>
+                        <p class="text-gray-700 text-sm">Competências: Coleta de informações, SQL Injection, Metasploit, NMAP, Python Básico, entre outras.</p>
+                    </div>
+                    <!-- Basic Networking Concepts -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-gray-900">Conceitos Básicos de Redes</h4>
+                        <p class="text-sm text-gray-600 mb-2">Cisco Networking Academy | Nov de 2024</p>
+                        <p class="text-gray-700 text-sm">Competências: Administração de redes, Configuração de roteador.</p>
+                    </div>
+                    <!-- Metasploit -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-gray-900">Hacker Ético com Metasploit</h4>
+                        <p class="text-sm text-gray-600 mb-2">Udemy | Jun de 2025</p>
+                    </div>
+                    <!-- Generative AI -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-gray-900">Tecnologia de AI generativa</h4>
+                        <p class="text-sm text-gray-600 mb-2">Senai São Paulo | Abr de 2025</p>
+                        <p class="text-gray-700 text-sm">Competências: Automação, Inteligência artificial.</p>
+                    </div>
+                    <!-- Deep Learning -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-gray-900">Aprendizado de máquina e Deep learning</h4>
+                        <p class="text-sm text-gray-600 mb-2">IBM | Mar de 2025</p>
+                        <p class="text-gray-700 text-sm">Competências: Automação, Lógica de programação.</p>
+                    </div>
+                    <!-- IBM Watson Studio -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-gray-900">Execute modelos de IA com o IBM Watson Studio</h4>
+                        <p class="text-sm text-gray-600 mb-2">IBM | Mar de 2025</p>
+                        <p class="text-gray-700 text-sm">Competências: Automação, Lógica de programação.</p>
+                    </div>
+                    <!-- Natural Language Processing -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-gray-900">Processamento de linguagem natural e visão por computador</h4>
+                        <p class="text-sm text-gray-600 mb-2">IBM | Mar de 2025</p>
+                        <p class="text-gray-700 text-sm">Competências: Automação.</p>
+                    </div>
+                    <!-- Django -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-gray-900">Django 2.0 - Conceitos fundamentais</h4>
+                        <p class="text-sm text-gray-600 mb-2">Udemy | Jan de 2025</p>
+                        <p class="text-gray-700 text-sm">Competências: Django, Python.</p>
+                    </div>
+                    <!-- YOLOv7 -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-gray-900">Free: YOLOv7 Custom object Detection Course</h4>
+                        <p class="text-sm text-gray-600 mb-2">Udemy | Jan de 2025</p>
+                    </div>
+                    <!-- Cyber Security -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-gray-900">Por dentro da Segurança Cibernética</h4>
+                        <p class="text-sm text-gray-600 mb-2">Senai São Paulo | Jan de 2025</p>
+                    </div>
+                    <!-- Python Automation -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-gray-900">Curso de automação python</h4>
+                        <p class="text-sm text-gray-600 mb-2">Unaerp Digital | Set de 2024</p>
+                        <p class="text-gray-700 text-sm">Competências: Python, Automação, Inteligência artificial, Extração de dados.</p>
+                    </div>
+                    <!-- DART Fundamentals -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-gray-900">Fundamentos de DART</h4>
+                        <p class="text-sm text-gray-600 mb-2">Senai São Paulo | Jun de 2024</p>
+                    </div>
+                    <!-- Networks -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-gray-900">Redes</h4>
+                        <p class="text-sm text-gray-600 mb-2">SENAI Ribeirão Preto | Jul de 2023</p>
+                        <p class="text-gray-700 text-sm">Competências: Administração de redes, LAN-WAN, Configuração de roteador, Packet Tracer.</p>
+                    </div>
+                    <!-- Power BI -->
+                    <div class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-gray-900">Power BI</h4>
+                        <p class="text-sm text-gray-600 mb-2">SENAI Ribeirão Preto | Jun de 2023</p>
+                        <p class="text-gray-700 text-sm">Competências: Microsoft Power BI.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New AI-powered Section -->
+        <section id="ia-ideas" class="bg-gray-100 py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold mb-8 text-gray-900">Gerador de Ideias com IA</h2>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-8">
+                    Descreva seu problema ou uma ideia de projeto. Nossa IA irá sugerir uma solução tecnológica sob medida para você!
+                </p>
+                <div class="max-w-3xl mx-auto space-y-4">
+                    <textarea id="idea-input" rows="5" class="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="Ex: 'Preciso de um aplicativo para gerenciar agendamentos de pet shop.'"></textarea>
+                    <button id="generate-btn" class="w-full sm:w-auto bg-indigo-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 transition-colors duration-300 transform hover:scale-105">
+                        Gerar Ideia ✨
+                    </button>
+                    <div id="loading-indicator" class="hidden mt-4 text-center text-indigo-600">
+                        Gerando solução...
+                    </div>
+                    <div id="idea-output" class="hidden mt-8 p-6 bg-white rounded-lg shadow-lg text-left">
+                        <!-- AI-generated content will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="bg-white py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold mb-8 text-gray-900">Quem Somos</h2>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto">
+                    A Default nasceu da paixão por tecnologia e da vontade de criar soluções que realmente fazem a diferença. Nossa equipe de especialistas trabalha lado a lado com os clientes para entender seus desafios e entregar produtos inovadores, eficientes e de alta qualidade.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="bg-gray-100 py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Entre em Contato</h2>
+                <div class="max-w-xl mx-auto text-center">
+                    <p class="text-lg text-gray-700 mb-6">Fale conosco diretamente via WhatsApp, e-mail, Instagram ou LinkedIn!</p>
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-6">
+                        <a href="https://wa.me/5516994522838" class="inline-block bg-green-500 text-white font-bold py-3 px-6 rounded-md shadow-lg hover:bg-green-600 transition-colors duration-300 transform hover:scale-105">
+                            WhatsApp
+                        </a>
+                        <a href="mailto:nicolas.jussiani@hotmail.com" class="inline-block bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-md shadow-lg hover:bg-gray-300 transition-colors duration-300 transform hover:scale-105">
+                            E-mail
+                        </a>
+                    </div>
+                    <p class="text-gray-600">Siga-nos em nossas redes: 
+                        <a href="https://www.instagram.com/umpoucosobretech" target="_blank" class="text-indigo-600 hover:underline">@umpoucosobretech</a> e 
+                        <a href="https://www.linkedin.com/in/nicolas-giussani-a401b329b" target="_blank" class="text-indigo-600 hover:underline">LinkedIn</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center text-sm">
+            <p>&copy; 2024 Default. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript to toggle mobile menu & handle slideshow and smooth scrolling -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Hero section slideshow logic
+        let slideIndex = 0;
+        const slides = document.getElementsByClassName("slide");
+        const dots = document.getElementsByClassName("dot");
+        
+        // Function to show the current slide and update the dots
+        function showSlides() {
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+                dots[i].classList.remove('active-dot');
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].classList.add('active');
+            dots[slideIndex - 1].classList.add('active-dot');
+            setTimeout(showSlides, 5000); // Change slide every 5 seconds
+        }
+
+        // Add click handlers for the navigation dots
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].addEventListener('click', function() {
+                // Manually set the slide index based on the clicked dot
+                slideIndex = i;
+                showSlides();
+            });
+        }
+
+        // Start the slideshow when the page loads
+        document.addEventListener('DOMContentLoaded', showSlides);
+
+        // Gemini API Integration - Idea Generator
+        document.addEventListener('DOMContentLoaded', () => {
+            const generateBtn = document.getElementById('generate-btn');
+            const ideaInput = document.getElementById('idea-input');
+            const ideaOutput = document.getElementById('idea-output');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            
+            generateBtn.addEventListener('click', async () => {
+                const prompt = ideaInput.value.trim();
+                if (!prompt) {
+                    ideaOutput.innerHTML = '<p class="text-red-500">Por favor, descreva sua ideia ou problema.</p>';
+                    ideaOutput.classList.remove('hidden');
+                    return;
+                }
+
+                // Show loading indicator and hide previous output
+                loadingIndicator.classList.remove('hidden');
+                ideaOutput.classList.add('hidden');
+
+                const fullPrompt = `Você é um consultor de tecnologia da empresa Default. Sua tarefa é analisar a seguinte ideia ou problema e propor uma solução tecnológica. Estruture sua resposta da seguinte forma, utilizando apenas HTML (com tags como h3, p, ul, li), sem Markdown.
+                
+                ### Análise e Solução Tecnológica
+                
+                **Ideia/Problema:** [Repita a ideia do usuário aqui]
+                
+                **Solução Proposta:** [Proponha uma solução tecnológica detalhada, mencionando quais serviços da Default (Desenvolvimento Web, Aplicativos Mobile, Machine Learning, Consultoria Técnica) seriam aplicados.]
+                
+                **Tecnologias Recomendadas:** [Liste 3 a 5 tecnologias (ex: Python, React, Flask, TensorFlow, etc.) que seriam adequadas para a solução, explicando brevemente o porquê.]
+                
+                **Próximos Passos:** [Sugira 2 ou 3 passos práticos para iniciar o projeto, como 'Consultoria inicial' ou 'Desenvolvimento de MVP'.]
+                
+                A seguir está a ideia/problema do usuário: "${prompt}"`;
+
+                let retries = 0;
+                const maxRetries = 3;
+                let delay = 1000;
+                
+                const modelName = "gemini-2.5-flash-preview-05-20";
+                const apiKey = ""; // API key placeholder
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+                
+                while (retries < maxRetries) {
+                    try {
+                        const payload = {
+                            contents: [{
+                                parts: [{ text: fullPrompt }]
+                            }]
+                        };
+
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`API error: ${response.statusText}`);
+                        }
+
+                        const result = await response.json();
+
+                        const text = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                        if (text) {
+                            ideaOutput.innerHTML = text.replace(/```html\n|\n```/g, ''); // Remove code block markdown if present
+                            ideaOutput.classList.remove('hidden');
+                            loadingIndicator.classList.add('hidden');
+                            return; // Exit on success
+                        } else {
+                            throw new Error("Invalid response format from API.");
+                        }
+
+                    } catch (error) {
+                        console.error("Failed to generate content:", error);
+                        retries++;
+                        if (retries < maxRetries) {
+                            await new Promise(res => setTimeout(res, delay));
+                            delay *= 2; // Exponential backoff
+                        } else {
+                            ideaOutput.innerHTML = '<p class="text-red-500">Desculpe, não foi possível gerar uma ideia no momento. Por favor, tente novamente mais tarde.</p>';
+                            ideaOutput.classList.remove('hidden');
+                            loadingIndicator.classList.add('hidden');
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>

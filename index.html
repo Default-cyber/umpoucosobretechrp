@@ -1,187 +1,436 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfólio - Nicolas Vieira</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://unpkg.com/lucide-static/font/lucide.css" rel="stylesheet" />
-  <style>
-    /* Slideshow */
-    .slide { display: none; }
-    .slide.active { display: block; animation: fade 1s ease-in-out; }
-    @keyframes fade { from {opacity: 0.4;} to {opacity: 1;} }
-    .dot { cursor: pointer; height: 10px; width: 10px; margin: 0 5px; background-color: #bbb; border-radius: 50%; display: inline-block; transition: background-color 0.6s ease; }
-    .active-dot { background-color: #2563eb; }
-
-    /* Menu mobile animado */
-    #mobile-menu { transition: max-height 0.4s ease-in-out; overflow: hidden; max-height: 0; }
-    #mobile-menu.open { max-height: 500px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Default - Soluções Tecnológicas</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Fundo escuro */
+            color: #f3f4f6; /* Texto claro padrão */
+            /* New background image properties */
+            background-image: url('fundo.jpeg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+        /* New overlay to improve text readability on dark background */
+        .content-overlay {
+            background-color: rgba(17, 24, 39, 0.85);
+        }
+        /* New dark gradient background color palette */
+        .gradient-bg {
+            background: linear-gradient(135deg, #1f2d37 0%, #009688 100%);
+        }
+        /* Style for the slides to enable fade transition */
+        .slide {
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            position: relative;
+        }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="antialiased">
 
-  <!-- Header -->
-  <header class="fixed w-full bg-white shadow-md z-50">
-    <div class="max-w-6xl mx-auto flex items-center justify-between p-4">
-      <h1 class="text-2xl font-bold text-blue-600">Nicolas Vieira</h1>
-      <nav class="hidden md:flex space-x-6 font-medium">
-        <a href="#projetos" class="hover:text-blue-600">Projetos</a>
-        <a href="#certificacoes" class="hover:text-blue-600">Certificações</a>
-        <a href="#contato" class="hover:text-blue-600">Contato</a>
-      </nav>
-      <button id="menu-button" class="md:hidden text-gray-700"><i class="lucide-menu"></i></button>
-    </div>
-    <div id="mobile-menu" class="bg-white px-4 md:hidden">
-      <a href="#projetos" class="block py-2 hover:text-blue-600">Projetos</a>
-      <a href="#certificacoes" class="block py-2 hover:text-blue-600">Certificações</a>
-      <a href="#contato" class="block py-2 hover:text-blue-600">Contato</a>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="relative h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('imagens/fundo.jpg');">
-    <div class="absolute inset-0 bg-gray-900/80"></div>
-    <div class="relative z-10 text-center text-white px-4">
-      <h2 class="text-4xl md:text-6xl font-bold mb-6">Bem-vindo ao meu Portfólio</h2>
-      <p class="text-lg md:text-xl mb-6">Aqui você encontrará meus projetos e conquistas</p>
-      <a href="#projetos" class="px-6 py-3 bg-blue-600 rounded-2xl font-semibold hover:scale-110 hover:shadow-xl transition">Ver Projetos</a>
-    </div>
-  </section>
-
-  <!-- Projetos -->
-  <section id="projetos" class="max-w-6xl mx-auto px-4 py-16">
-    <h2 class="text-3xl font-bold text-center mb-10">Projetos</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Projeto 1 -->
-      <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition">
-        <img src="imagens/projeto1.png" alt="Projeto 1" class="w-full h-40 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Sistema Python + MongoDB</h3>
-          <p class="text-sm text-gray-600 mb-3">Sistema de autenticação e relatórios em Excel com Tkinter, MongoDB e XML.</p>
-          <a href="#" class="text-blue-600 font-medium hover:underline">Ver mais</a>
+    <!-- Header / Navigation Bar -->
+    <header class="bg-[#111827] shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo or Company Name -->
+            <a href="#hero" class="text-2xl font-bold text-white">Default</a>
+            <!-- Mobile Menu Button (hidden on desktop) -->
+            <div class="md:hidden">
+                <button id="menu-button" class="text-gray-400 hover:text-gray-200 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Desktop Navigation Links -->
+            <div id="nav-links" class="hidden md:flex space-x-8">
+                <a href="#services" class="text-gray-300 hover:text-orange-500 transition-colors duration-300">Serviços</a>
+                <a href="#projects" class="text-gray-300 hover:text-orange-500 transition-colors duration-300">Projetos</a>
+                <a href="#certifications" class="text-gray-300 hover:text-orange-500 transition-colors duration-300">Certificados</a>
+                <a href="#about" class="text-gray-300 hover:text-orange-500 transition-colors duration-300">Sobre Nós</a>
+                <a href="#contact" class="text-gray-300 hover:text-orange-500 transition-colors duration-300">Contato</a>
+            </div>
+        </nav>
+        <!-- Mobile Menu (initially hidden) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#1f2937] shadow-lg py-4">
+            <a href="#services" class="block px-6 py-2 text-gray-300 hover:bg-gray-700">Serviços</a>
+            <a href="#projects" class="block px-6 py-2 text-gray-300 hover:bg-gray-700">Projetos</a>
+            <a href="#certifications" class="block px-6 py-2 text-gray-300 hover:bg-gray-700">Certificados</a>
+            <a href="#about" class="block px-6 py-2 text-gray-300 hover:bg-gray-700">Sobre Nós</a>
+            <a href="#contact" class="block px-6 py-2 text-gray-300 hover:bg-gray-700">Contato</a>
         </div>
-      </div>
-      <!-- Projeto 2 -->
-      <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition">
-        <img src="imagens/projeto2.png" alt="Projeto 2" class="w-full h-40 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Painel Flask + DataTables</h3>
-          <p class="text-sm text-gray-600 mb-3">Painel interativo para análise de dados do SUS com filtros inteligentes.</p>
-          <a href="#" class="text-blue-600 font-medium hover:underline">Ver mais</a>
+    </header>
+
+    <main class="content-overlay">
+        <!-- Hero Section with Slideshow -->
+        <section id="hero" class="gradient-bg text-white py-20 md:py-32 relative overflow-hidden h-96">
+            <div class="container mx-auto px-6 h-full flex items-center justify-center relative">
+                <!-- Slide 1 -->
+                <div class="slide active">
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+                        Inovando o Futuro com Tecnologia
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 opacity-90">
+                        A Default cria soluções tecnológicas que transformam ideias em realidade.
+                    </p>
+                    <a href="#services" class="bg-gray-50 text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300 transform hover:scale-105">
+                        Descubra Nossos Serviços
+                    </a>
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+                        Especialistas em Machine Learning
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 opacity-90">
+                        Construa sistemas inteligentes que aprendem e evoluem com o seu negócio.
+                    </p>
+                    <a href="#services" class="bg-gray-50 text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300 transform hover:scale-105">
+                        Conheça o ML
+                    </a>
+                </div>
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+                        Soluções sob Medida
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 opacity-90">
+                        Seja para web, mobile ou consultoria, temos a solução ideal para você.
+                    </p>
+                    <a href="#contact" class="bg-gray-50 text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300 transform hover:scale-105">
+                        Fale Conosco
+                    </a>
+                </div>
+            </div>
+            <!-- Slide navigation dots (optional) -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                <span class="dot w-3 h-3 bg-white bg-opacity-50 rounded-full cursor-pointer hover:bg-opacity-100 transition-all duration-300 active-dot"></span>
+                <span class="dot w-3 h-3 bg-white bg-opacity-50 rounded-full cursor-pointer hover:bg-opacity-100 transition-all duration-300"></span>
+                <span class="dot w-3 h-3 bg-white bg-opacity-50 rounded-full cursor-pointer hover:bg-opacity-100 transition-all duration-300"></span>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="bg-[#111827] py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 text-white">Nossos Serviços</h2>
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+                    <!-- Service Card 1 -->
+                    <div class="p-8 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="text-orange-500 mb-4">
+                            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9.75 14L22.5 14L22.5 17M9.75 17L12.75 22L12.75 17M12.75 17L12.75 22M14.25 17L14.25 14L1.5 14L1.5 17"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4V20M4 12H20"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-2 text-white">Desenvolvimento Web</h3>
+                        <p class="text-gray-400 text-center">
+                            Criamos sites e aplicações web modernos e escaláveis para impulsionar seu negócio.
+                        </p>
+                    </div>
+                    <!-- Service Card 2 -->
+                    <div class="p-8 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="text-orange-500 mb-4">
+                            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-2 text-white">Aplicativos Mobile</h3>
+                        <p class="text-gray-400 text-center">
+                            Desenvolvemos aplicativos nativos e híbridos para iOS e Android, com foco na experiência do usuário.
+                        </p>
+                    </div>
+                    <!-- Service Card 3 -->
+                    <div class="p-8 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="text-orange-500 mb-4">
+                            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v18l7-4 7 4V3a2 2 0 00-2-2H7a2 2 0 00-2 2z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-2 text-white">Consultoria Técnica</h3>
+                        <p class="text-gray-400 text-center">
+                            Orientamos sua empresa com as melhores estratégias e tecnologias para atingir seus objetivos.
+                        </p>
+                    </div>
+                    <!-- Service Card 4 (New) -->
+                    <div class="p-8 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2">
+                        <div class="text-orange-500 mb-4">
+                            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.608 3.292 0a1.724 1.724 0 002.573-1.066zM15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-2 text-white">Machine Learning</h3>
+                        <p class="text-gray-400 text-center">
+                            Implementamos soluções inteligentes para automação, análise de dados e previsão de resultados.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section (New) -->
+        <section id="projects" class="bg-[#111827] py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 text-white">Nossos Projetos e Premiações</h2>
+                <div class="grid sm:grid-cols-1 lg:grid-cols-2 gap-10">
+                    <!-- Project Card 1: Solar Site -->
+                    <div class="p-8 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <img src="energiasolar1.jpeg" alt="Projeto Solar Site" class="rounded-md mb-4 w-full">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">🌞 Projeto Solar Site: Análise e Simulação Fotovoltaica</h3>
+                        <p class="text-gray-400 mb-4">
+                            Plataforma web interativa desenvolvida para facilitar a análise e simulação de sistemas de energia solar fotovoltaica. Utiliza Python (Flask), HTML5, CSS3, JavaScript e integrações com Google Maps.
+                        </p>
+                        <p class="text-gray-400 mb-4">
+                            Principais funcionalidades: mapeamento solar interativo, calculadora de área, simulador de painéis, análise financeira e ambiental.
+                        </p>
+                        <a href="https://solar-site-teal.vercel.app/login?next=%2F" target="_blank" class="text-orange-500 font-medium hover:underline">Acessar o Projeto &rarr;</a>
+                    </div>
+                    <!-- Project Card 2: Software de NF -->
+                    <div class="p-8 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <img src="projetoextracaodedados.jpeg" alt="Software de NF" class="rounded-md mb-4 w-full">
+                        <h3 class="text-2xl font-semibold mb-2 text-white">🚀 Sistema de Análise e Geração de Relatórios de NFe</h3>
+                        <p class="text-gray-400 mb-4">
+                            Aplicação em Python (CustomTkinter) para processamento automatizado de arquivos XML de NFe. Extrai dados fiscais e gera relatórios em Excel usando Pandas e BeautifulSoup.
+                        </p>
+                        <p class="text-gray-400 mb-4">
+                            Funcionalidades: autenticação com MongoDB Atlas, análise tributária, geração de planilhas detalhadas.
+                        </p>
+                        <a href="#contact" class="text-orange-500 font-medium hover:underline">Saber Mais &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Awards Section -->
+                <div class="mt-16 text-center">
+                    <h3 class="text-3xl font-bold mb-6 text-white">Premiações</h3>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-8">
+                        <!-- Award 1 -->
+                        <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <h4 class="text-xl font-semibold text-orange-500">1° Lugar - Hackacripto</h4>
+                            <p class="text-gray-400">Nov de 2024</p>
+                            <p class="text-sm mt-2 text-gray-400">
+                                Destaque no desenvolvimento de uma nova criptomoeda durante o evento do hackathon.
+                            </p>
+                        </div>
+                        <!-- Award 2 -->
+                        <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <h4 class="text-xl font-semibold text-orange-500">3° Lugar - II Maratona de Programação</h4>
+                            <p class="text-gray-400">Mai de 2025</p>
+                            <p class="text-sm mt-2 text-gray-400">
+                                Conquistado na II Maratona de Programação da Universidade de Ribeirão Preto (UNAERP).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="bg-[#111827] py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 text-white">Cursos e Certificações</h2>
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
+                    <!-- Flutter Course -->
+                    <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-white">Curso Flutter completo/Atualizado 2025</h4>
+                        <p class="text-sm text-gray-400 mb-2">Udemy | Mai de 2025</p>
+                        <p class="text-gray-500 text-sm">Competências: Desenvolvimento mobile Android/IOS/Windows.</p>
+                    </div>
+                    <!-- Intro to Cybersecurity -->
+                    <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-white">Introduction to Cybersecurity</h4>
+                        <p class="text-sm text-gray-400 mb-2">Cisco Networking Academy | Jan de 2025</p>
+                    </div>
+                    <!-- Ethical Hacker with Kali Linux -->
+                    <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-white">Hacker Ético Profissional com Kali Linux v2025</h4>
+                        <p class="text-sm text-gray-400 mb-2">Udemy | Dez de 2024</p>
+                        <p class="text-gray-500 text-sm">Competências: Coleta de informações, SQL Injection, Metasploit, NMAP, Python Básico, entre outras.</p>
+                    </div>
+                    <!-- Basic Networking Concepts -->
+                    <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-white">Conceitos Básicos de Redes</h4>
+                        <p class="text-sm text-gray-400 mb-2">Cisco Networking Academy | Nov de 2024</p>
+                        <p class="text-gray-500 text-sm">Competências: Administração de redes, Configuração de roteador.</p>
+                    </div>
+                    <!-- Metasploit -->
+                    <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-white">Hacker Ético com Metasploit</h4>
+                        <p class="text-sm text-gray-400 mb-2">Udemy | Jun de 2025</p>
+                    </div>
+                    <!-- Generative AI -->
+                    <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-white">Tecnologia de AI generativa</h4>
+                        <p class="text-sm text-gray-400 mb-2">Senai São Paulo | Abr de 2025</p>
+                        <p class="text-gray-500 text-sm">Competências: Automação, Inteligência artificial.</p>
+                    </div>
+                    <!-- Deep Learning -->
+                    <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-white">Aprendizado de máquina e Deep learning</h4>
+                        <p class="text-sm text-gray-400 mb-2">IBM | Mar de 2025</p>
+                        <p class="text-gray-500 text-sm">Competências: Automação, Lógica de programação.</p>
+                    </div>
+                    <!-- IBM Watson Studio -->
+                    <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-white">Execute modelos de IA com o IBM Watson Studio</h4>
+                        <p class="text-sm text-gray-400 mb-2">IBM | Mar de 2025</p>
+                        <p class="text-gray-500 text-sm">Competências: Automação, Lógica de programação.</p>
+                    </div>
+                    <!-- Natural Language Processing -->
+                    <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-white">Processamento de linguagem natural e visão por computador</h4>
+                        <p class="text-sm text-gray-400 mb-2">IBM | Mar de 2025</p>
+                        <p class="text-gray-500 text-sm">Competências: Automação.</p>
+                    </div>
+                    <!-- Django -->
+                    <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-white">Django 2.0 - Conceitos fundamentais</h4>
+                        <p class="text-sm text-gray-400 mb-2">Udemy | Jan de 2025</p>
+                        <p class="text-gray-500 text-sm">Competências: Django, Python.</p>
+                    </div>
+                    <!-- YOLOv7 -->
+                    <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-white">Free: YOLOv7 Custom object Detection Course</h4>
+                        <p class="text-sm text-gray-400 mb-2">Udemy | Jan de 2025</p>
+                    </div>
+                    <!-- Cyber Security -->
+                    <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-white">Por dentro da Segurança Cibernética</h4>
+                        <p class="text-sm text-gray-400 mb-2">Senai São Paulo | Jan de 2025</p>
+                    </div>
+                    <!-- Python Automation -->
+                    <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-white">Curso de automação python</h4>
+                        <p class="text-sm text-gray-400 mb-2">Unaerp Digital | Set de 2024</p>
+                        <p class="text-gray-500 text-sm">Competências: Python, Automação, Inteligência artificial, Extração de dados.</p>
+                    </div>
+                    <!-- DART Fundamentals -->
+                    <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-white">Fundamentos de DART</h4>
+                        <p class="text-sm text-gray-400 mb-2">Senai São Paulo | Jun de 2024</p>
+                    </div>
+                    <!-- Networks -->
+                    <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-white">Redes</h4>
+                        <p class="text-sm text-gray-400 mb-2">SENAI Ribeirão Preto | Jul de 2023</p>
+                        <p class="text-gray-500 text-sm">Competências: Administração de redes, LAN-WAN, Configuração de roteador, Packet Tracer.</p>
+                    </div>
+                    <!-- Power BI -->
+                    <div class="p-6 bg-[#1f2937] rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        <h4 class="text-xl font-semibold mb-1 text-white">Power BI</h4>
+                        <p class="text-sm text-gray-400 mb-2">SENAI Ribeirão Preto | Jun de 2023</p>
+                        <p class="text-gray-500 text-sm">Competências: Microsoft Power BI.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="bg-[#111827] py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold mb-8 text-white">Quem Somos</h2>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                    A Default nasceu da paixão por tecnologia e da vontade de criar soluções que realmente fazem a diferença. Nossa equipe de especialistas trabalha lado a lado com os clientes para entender seus desafios e entregar produtos inovadores, eficientes e de alta qualidade.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="bg-[#1f2937] py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-8 text-white">Entre em Contato</h2>
+                <div class="max-w-xl mx-auto text-center">
+                    <p class="text-lg text-gray-400 mb-6">Fale conosco diretamente via WhatsApp, e-mail, Instagram ou LinkedIn!</p>
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-6">
+                        <a href="https://wa.me/5516994522838" class="inline-block bg-green-600 text-white font-bold py-3 px-6 rounded-md shadow-lg hover:bg-green-700 transition-colors duration-300 transform hover:scale-105">
+                            WhatsApp
+                        </a>
+                        <a href="mailto:nicolas.jussiani@hotmail.com" class="inline-block bg-gray-700 text-white font-bold py-3 px-6 rounded-md shadow-lg hover:bg-gray-600 transition-colors duration-300 transform hover:scale-105">
+                            E-mail
+                        </a>
+                    </div>
+                    <p class="text-gray-400">Siga-nos em nossas redes: 
+                        <a href="https://www.instagram.com/umpoucosobretech" target="_blank" class="text-orange-500 hover:underline">@umpoucosobretech</a> e 
+                        <a href="https://www.linkedin.com/in/nicolas-giussani-a401b329b" target="_blank" class="text-orange-500 hover:underline">LinkedIn</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-6 text-center text-sm">
+            <p>&copy; 2024 Default. Todos os direitos reservados.</p>
         </div>
-      </div>
-      <!-- Projeto 3 -->
-      <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition">
-        <img src="imagens/projeto3.png" alt="Projeto 3" class="w-full h-40 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Análise R + DATASUS</h3>
-          <p class="text-sm text-gray-600 mb-3">Estimativa de mortes até 2029 com dados públicos de saúde (R + GitHub).</p>
-          <a href="https://github.com/nicolasjussiani/datasus_estimativas" target="_blank" class="text-blue-600 font-medium hover:underline">Ver mais</a>
-        </div>
-      </div>
-    </div>
-  </section>
+    </footer>
 
-  <!-- Certificações -->
-  <section id="certificacoes" class="bg-gray-100 py-16 px-4">
-    <h2 class="text-3xl font-bold text-center mb-10">Certificações</h2>
-    <div class="max-w-5xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="bg-white rounded-2xl shadow p-6 flex flex-col items-center hover:shadow-xl transition">
-        <i class="lucide-award text-blue-600 text-4xl mb-3"></i>
-        <h3 class="font-semibold mb-2">Python Avançado</h3>
-        <p class="text-sm text-gray-600">Curso completo de Python com foco em automação e análise de dados.</p>
-      </div>
-      <div class="bg-white rounded-2xl shadow p-6 flex flex-col items-center hover:shadow-xl transition">
-        <i class="lucide-database text-blue-600 text-4xl mb-3"></i>
-        <h3 class="font-semibold mb-2">Banco de Dados MongoDB</h3>
-        <p class="text-sm text-gray-600">Treinamento em modelagem e integração de dados com MongoDB Atlas.</p>
-      </div>
-      <div class="bg-white rounded-2xl shadow p-6 flex flex-col items-center hover:shadow-xl transition">
-        <i class="lucide-code text-blue-600 text-4xl mb-3"></i>
-        <h3 class="font-semibold mb-2">Desenvolvimento Web</h3>
-        <p class="text-sm text-gray-600">Certificação em front-end e back-end com Flask, Tailwind e APIs.</p>
-      </div>
-    </div>
-  </section>
+    <!-- JavaScript to toggle mobile menu & handle slideshow and smooth scrolling -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
 
-  <!-- Slideshow -->
-  <section class="max-w-4xl mx-auto py-16">
-    <h2 class="text-3xl font-bold text-center mb-6">Destaques</h2>
-    <div class="relative">
-      <div class="slide active"><img src="imagens/slide1.png" class="rounded-2xl w-full"></div>
-      <div class="slide"><img src="imagens/slide2.png" class="rounded-2xl w-full"></div>
-      <div class="slide"><img src="imagens/slide3.png" class="rounded-2xl w-full"></div>
-    </div>
-    <div class="text-center mt-4">
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
-  </section>
+        // Mobile menu toggle
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-  <!-- Contato -->
-  <section id="contato" class="bg-gray-900 text-white py-16 px-4">
-    <h2 class="text-3xl font-bold text-center mb-10">Contato</h2>
-    <div class="max-w-4xl mx-auto flex flex-col items-center space-y-4">
-      <p class="text-center text-lg">Entre em contato comigo através das redes:</p>
-      <div class="flex space-x-6 text-2xl">
-        <a href="mailto:seuemail@email.com" class="hover:text-blue-400"><i class="lucide-mail"></i></a>
-        <a href="https://github.com/nicolasjussiani" target="_blank" class="hover:text-blue-400"><i class="lucide-github"></i></a>
-        <a href="https://linkedin.com/in/seu-perfil" target="_blank" class="hover:text-blue-400"><i class="lucide-linkedin"></i></a>
-      </div>
-    </div>
-  </section>
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-gray-400 text-center py-6 text-sm">
-    © 2025 Nicolas Vieira - Todos os direitos reservados.
-  </footer>
+        // Hero section slideshow logic
+        let slideIndex = 0;
+        const slides = document.getElementsByClassName("slide");
+        const dots = document.getElementsByClassName("dot");
+        
+        // Function to show the current slide and update the dots
+        function showSlides() {
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+                dots[i].classList.remove('active-dot');
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].classList.add('active');
+            dots[slideIndex - 1].classList.add('active-dot');
+            setTimeout(showSlides, 5000); // Change slide every 5 seconds
+        }
 
-  <!-- Scripts -->
-  <script>
-    // Mobile menu
-    const menuButton = document.getElementById('menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    menuButton.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+        // Add click handlers for the navigation dots
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].addEventListener('click', function() {
+                // Manually set the slide index based on the clicked dot
+                slideIndex = i;
+                showSlides();
+            });
+        }
 
-    // Slideshow corrigido
-    let slideIndex = 0;
-    let slideInterval;
-    const slides = document.getElementsByClassName("slide");
-    const dots = document.getElementsByClassName("dot");
+        // Start the slideshow when the page loads
+        document.addEventListener('DOMContentLoaded', showSlides);
 
-    function showSlides(n) {
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].classList.remove('active');
-        dots[i].classList.remove('active-dot');
-      }
-      if (n !== undefined) {
-        slideIndex = n;
-      } else {
-        slideIndex++;
-      }
-      if (slideIndex >= slides.length) { slideIndex = 0; }
-      slides[slideIndex].classList.add('active');
-      dots[slideIndex].classList.add('active-dot');
-    }
-
-    function startSlideShow() {
-      slideInterval = setInterval(() => showSlides(), 5000);
-    }
-
-    for (let i = 0; i < dots.length; i++) {
-      dots[i].addEventListener('click', function () {
-        clearInterval(slideInterval);
-        showSlides(i);
-        startSlideShow();
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      showSlides(0);
-      startSlideShow();
-    });
-  </script>
+    </script>
 </body>
 </html>
